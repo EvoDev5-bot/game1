@@ -3,7 +3,6 @@ import { Input } from "./input.js";
 import { Player } from "./player.js";
 import { FlyingEnemy, GroundEnemy } from "./enemy.js";
 import { displayStatusText } from "./utils.js";
-import { DeviceOrientation } from "./mobileSupport.js";
 
 export class Game {
   constructor() {
@@ -18,7 +17,7 @@ export class Game {
     this.canvas.height = 500;
 
     this.ctx = this.canvas.getContext("2d");
-    this.input = new Input();
+    this.input = new Input(this);
     this.groundLevel = 85;
     this.player = new Player(this);
     this.gameSpeed = 0.4;
@@ -32,7 +31,6 @@ export class Game {
     this.explosions = [];
     this.currentTimestamp = 0;
     this.gameOver = false;
-    this.deviceOrientation = new DeviceOrientation(this);
   }
   update(timestamp) {
     this.currentTimestamp = timestamp;
